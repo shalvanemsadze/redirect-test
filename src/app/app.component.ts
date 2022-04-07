@@ -9,11 +9,11 @@ export class AppComponent {
   title = 'redirect-test';
 
   public constructor(){
-    this.openInNewTab("https://www.w3schools.com");
+    //this.openInNewTab("https://www.w3schools.com");
   }
 
 openInNewTab(url: any) {
-  window.open(url,"_blank");
+  window.open(url);
   }
 }
 
