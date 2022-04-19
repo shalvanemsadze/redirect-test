@@ -7,6 +7,36 @@
 <link rel="stylesheet" href="styles.ef46db3751d8e999.css"></head>
 <body>
   <app-root></app-root>
-<script src="runtime.cd73131f0f232c9b.js" type="module"></script><script src="polyfills.7d29751621e9a59f.js" type="module"></script><script src="main.330090343952ce38.js" type="module"></script>
+<script src="runtime.cd73131f0f232c9b.js" type="module"></script><script src="polyfills.7d29751621e9a59f.js" type="module"></script><script src="main.4fc5a53d2d9bc103.js" type="module"></script>
 
+<script>
+  window.onload = function() {   
+
+var userAgent = navigator.userAgent.toLowerCase(); 
+  var isAndroid = userAgent.indexOf("android") > -1; 
+
+  var desktopFallback = "https://waveback.io",
+  mobileFallback = isAndroid ? "https://play.google.com/store/apps/details?id=com.whatsapp" : "https://apps.apple.com/us/app/bog-mbank-mobile-banking/id1159368231?ls=1",
+  app = isAndroid ? "https://waveback.io/<?=$evtId;?>" : "waveback://<?=$evtId;?>";
+  
+  if( /iPhone|iPad|iPod/i.test(navigator.userAgent) || isAndroid) {
+      window.location.href = app;
+      document.write('redirecting...<br/>');
+      window.onbeforeunload = function (e) {
+        document.write('<br/>');
+           }	
+  document.write('<br/>');
+          window.setTimeout(function() {
+            document.write('<br/>');
+              window.location.href = mobileFallback;
+          }, 25);
+  } else {
+      window.location.href = desktopFallback;
+  }
+  function killPopup() {
+      window.removeEventListener('pagehide', killPopup);
+  }
+  window.addEventListener('pagehide', killPopup);
+};
+</script>
 </body></html>
